@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ══════════════════════════════════════════
+   DESIGN SYSTEM — Warm Amber / Gold
+   
+   Palette built for DEPTH and FOCUS:
+   • Deep near-black base with barely-warm undertone
+   • Amber/gold accent with natural gradient depth
+   • Layered glass surfaces create z-depth
+   • Warm off-white text for reduced eye strain
+   ══════════════════════════════════════════ */
+
+:root {
+  --bg: #0a0a0c;
+  --surface: #141417;
+  --surface-hi: #1c1c20;
+  --border: rgba(255, 255, 255, 0.05);
+  --border-hi: rgba(255, 255, 255, 0.09);
+
+  --accent: #d4a04a;
+  --accent-hi: #e4b45c;
+  --accent-dim: rgba(212, 160, 74, 0.12);
+  --accent-glow: rgba(212, 160, 74, 0.06);
+
+  --text: #e8e6e1;
+  --text-2: #8a877f;
+  --text-3: #504e49;
+  --text-4: #363430;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ── Background texture ── */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* ── Radial warmth ── */
+.bg-glow {
+  background: radial-gradient(ellipse 50% 35% at 50% -5%,
+      var(--accent-glow) 0%,
+      transparent 70%);
+}
+
+/* ── Glass layers (depth) ── */
+.glass {
+  background: rgba(20, 20, 23, 0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border);
+}
+
+.glass-strong {
+  background: rgba(20, 20, 23, 0.8);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid var(--border);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-4);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-3);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-4) transparent;
+}
+
+/* ── Streaming cursor ── */
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+.streaming-cursor::after {
+  content: "▊";
+  color: var(--accent);
+  animation: blink 0.8s step-end infinite;
+  margin-left: 2px;
+}
+
+/* ── Gradient text (golden shimmer) ── */
+.gradient-text {
+  background: linear-gradient(135deg,
+      #f0ece4 0%,
+      var(--accent) 35%,
+      #f0ece4 50%,
+      var(--accent) 75%,
+      #f0ece4 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 6s ease-in-out infinite;
+}
+
+@keyframes goldShimmer {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ── Accent glow ── */
+.glow {
+  box-shadow:
+    0 0 20px var(--accent-glow),
+    0 0 60px rgba(212, 160, 74, 0.03),
+    0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.glow-sm {
+  box-shadow:
+    0 0 12px var(--accent-glow),
+    0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Format badge ── */
+.format-badge {
+  @apply inline-flex items-center px-3 py-1.5 rounded-lg text-[11px] uppercase tracking-[0.15em] transition-all duration-300 cursor-default;
+  font-family: var(--font-jetbrains-mono), monospace;
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text-3);
+  border: 1px solid var(--border);
+}
+
+.format-badge:hover {
+  color: var(--accent);
+  border-color: rgba(212, 160, 74, 0.2);
+  box-shadow: 0 0 16px rgba(212, 160, 74, 0.06);
+}
+
+/* ── Focus ring ── */
+.focus-ring:focus-within {
+  border-color: rgba(212, 160, 74, 0.25);
+  box-shadow: 0 0 0 3px rgba(212, 160, 74, 0.06);
+}
+
+/* ── Dot separator ── */
+.dot-sep::before {
+  content: "·";
+  margin: 0 6px;
+  color: var(--text-4);
+}
