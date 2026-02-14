@@ -44,7 +44,7 @@ Built with **Next.js 14**, **GPT-4o Mini**, **OpenAI Embeddings**, and **Pinecon
 ### Install
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/day14-doc-assistant.git
+git clone https://github.com/Kiishi615/day14-doc-assistant.git
 cd day14-doc-assistant
 npm install
 ```
